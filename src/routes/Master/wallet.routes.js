@@ -8,13 +8,9 @@ const {
   deleteWallet 
 } = require('../../controllers/wallet.controller');
 
+const { getWalletByIdSchema, getAllWalletsSchema } = require('../../../validators/wallet.validator');
 const { auth } = require('../../../middleware/auth');
 const { validateQuery, validateParams } = require('../../../middleware/validation');
-
-const { 
-  getWalletByIdSchema, 
-  getAllWalletsSchema 
-} = require('../../../validators/wallet.validator');
 
 // Get all wallets
 router.get('/getAll', validateQuery(getAllWalletsSchema), getAllWallets);

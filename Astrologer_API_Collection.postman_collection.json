@@ -1,0 +1,1033 @@
+{
+	"info": {
+		"_postman_id": "astrologer-api-collection",
+		"name": "Astrologer API Collection",
+		"description": "Complete API collection for Astrologer application with all CRUD operations",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"variable": [
+		{
+			"key": "ashtro",
+			"value": "http://localhost:3015",
+			"type": "string"
+		},
+		{
+			"key": "auth",
+			"value": "your_bearer_token_here",
+			"type": "string"
+		}
+	],
+	"item": [
+		{
+			"name": "Astrologer Class APIs",
+			"item": [
+				{
+					"name": "Create Astrologer Class",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{auth}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"Astorloger_id\": 1,\n  \"Title\": \"Advanced Vedic Astrology Course\",\n  \"Classtype\": \"Live Session\",\n  \"Access\": \"Premium\",\n  \"Category_id\": 1,\n  \"Duration\": \"2 hours\",\n  \"upload_image\": \"https://example.com/class-image.jpg\",\n  \"Description\": \"Comprehensive course covering advanced Vedic astrology techniques including planetary combinations and predictive methods.\",\n  \"Pricing\": 2999,\n  \"TargetAudience\": \"Intermediate to Advanced astrologers\",\n  \"status\": true\n}"
+						},
+						"url": {
+							"raw": "{{ashtro}}/api/astrologer/class/create",
+							"host": [
+								"{{ashtro}}"
+							],
+							"path": [
+								"api",
+								"astrologer",
+								"class",
+								"create"
+							]
+						}
+					}
+				},
+				{
+					"name": "Get All Astrologer Classes",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{ashtro}}/api/astrologer/class/getAll?page=1&limit=10&search=&status=true&Classtype=Live Session&Access=Premium&Category_id=1&Astorloger_id=1&sortBy=created_at&sortOrder=desc",
+							"host": [
+								"{{ashtro}}"
+							],
+							"path": [
+								"api",
+								"astrologer",
+								"class",
+								"getAll"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "limit",
+									"value": "10"
+								},
+								{
+									"key": "search",
+									"value": ""
+								},
+								{
+									"key": "status",
+									"value": "true"
+								},
+								{
+									"key": "Classtype",
+									"value": "Live Session"
+								},
+								{
+									"key": "Access",
+									"value": "Premium"
+								},
+								{
+									"key": "Category_id",
+									"value": "1"
+								},
+								{
+									"key": "Astorloger_id",
+									"value": "1"
+								},
+								{
+									"key": "sortBy",
+									"value": "created_at"
+								},
+								{
+									"key": "sortOrder",
+									"value": "desc"
+								}
+							]
+						}
+					}
+				},
+				{
+					"name": "Get Astrologer Class By ID",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{auth}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{ashtro}}/api/astrologer/class/getAstrologerClassById/1",
+							"host": [
+								"{{ashtro}}"
+							],
+							"path": [
+								"api",
+								"astrologer",
+								"class",
+								"getAstrologerClassById",
+								"1"
+							]
+						}
+					}
+				},
+				{
+					"name": "Update Astrologer Class By ID",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{auth}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"id\": 1,\n  \"Title\": \"Advanced Vedic Astrology Course - Updated\",\n  \"Classtype\": \"Recorded Video\",\n  \"Access\": \"Free\",\n  \"Category_id\": 1,\n  \"Duration\": \"3 hours\",\n  \"Description\": \"Updated comprehensive course covering advanced Vedic astrology techniques.\",\n  \"Pricing\": 1999,\n  \"TargetAudience\": \"All levels\",\n  \"status\": true\n}"
+						},
+						"url": {
+							"raw": "{{ashtro}}/api/astrologer/class/updateAstrologerClassById",
+							"host": [
+								"{{ashtro}}"
+							],
+							"path": [
+								"api",
+								"astrologer",
+								"class",
+								"updateAstrologerClassById"
+							]
+						}
+					}
+				},
+				{
+					"name": "Delete Astrologer Class By ID",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{auth}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{ashtro}}/api/astrologer/class/deleteAstrologerClassById/1",
+							"host": [
+								"{{ashtro}}"
+							],
+							"path": [
+								"api",
+								"astrologer",
+								"class",
+								"deleteAstrologerClassById",
+								"1"
+							]
+						}
+					}
+				},
+				{
+					"name": "Get Astrologer Classes By Category ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{ashtro}}/api/astrologer/class/getAstrologerClassByCategoryId/1?page=1&limit=10&search=&status=true&Classtype=Live Session&Access=Premium&Astorloger_id=1&sortBy=created_at&sortOrder=desc",
+							"host": [
+								"{{ashtro}}"
+							],
+							"path": [
+								"api",
+								"astrologer",
+								"class",
+								"getAstrologerClassByCategoryId",
+								"1"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "limit",
+									"value": "10"
+								},
+								{
+									"key": "search",
+									"value": ""
+								},
+								{
+									"key": "status",
+									"value": "true"
+								},
+								{
+									"key": "Classtype",
+									"value": "Live Session"
+								},
+								{
+									"key": "Access",
+									"value": "Premium"
+								},
+								{
+									"key": "Astorloger_id",
+									"value": "1"
+								},
+								{
+									"key": "sortBy",
+									"value": "created_at"
+								},
+								{
+									"key": "sortOrder",
+									"value": "desc"
+								}
+							]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "Booking Astrologer APIs",
+			"item": [
+				{
+					"name": "Create Booking Astrologer",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{auth}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"Astorloger_id\": 1,\n  \"user_id\": 2,\n  \"CallStatus\": \"Approve\",\n  \"BooingStatus\": \"Pending\",\n  \"status\": true\n}"
+						},
+						"url": {
+							"raw": "{{ashtro}}/api/astrologer/booking/create",
+							"host": [
+								"{{ashtro}}"
+							],
+							"path": [
+								"api",
+								"astrologer",
+								"booking",
+								"create"
+							]
+						}
+					}
+				},
+				{
+					"name": "Get All Booking Astrologers",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{ashtro}}/api/astrologer/booking/getAll?page=1&limit=10&search=&status=true&CallStatus=Approve&BooingStatus=Pending&Astorloger_id=1&user_id=2&sortBy=created_at&sortOrder=desc",
+							"host": [
+								"{{ashtro}}"
+							],
+							"path": [
+								"api",
+								"astrologer",
+								"booking",
+								"getAll"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "limit",
+									"value": "10"
+								},
+								{
+									"key": "search",
+									"value": ""
+								},
+								{
+									"key": "status",
+									"value": "true"
+								},
+								{
+									"key": "CallStatus",
+									"value": "Approve"
+								},
+								{
+									"key": "BooingStatus",
+									"value": "Pending"
+								},
+								{
+									"key": "Astorloger_id",
+									"value": "1"
+								},
+								{
+									"key": "user_id",
+									"value": "2"
+								},
+								{
+									"key": "sortBy",
+									"value": "created_at"
+								},
+								{
+									"key": "sortOrder",
+									"value": "desc"
+								}
+							]
+						}
+					}
+				},
+				{
+					"name": "Get Booking Astrologer By ID",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{auth}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{ashtro}}/api/astrologer/booking/getBookingAstrologerById/1",
+							"host": [
+								"{{ashtro}}"
+							],
+							"path": [
+								"api",
+								"astrologer",
+								"booking",
+								"getBookingAstrologerById",
+								"1"
+							]
+						}
+					}
+				},
+				{
+					"name": "Get Booking Astrologers By Auth User",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{auth}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{ashtro}}/api/astrologer/booking/getBookingAstrologerByAuth?page=1&limit=10&search=&status=true&CallStatus=Approve&BooingStatus=Pending&sortBy=created_at&sortOrder=desc",
+							"host": [
+								"{{ashtro}}"
+							],
+							"path": [
+								"api",
+								"astrologer",
+								"booking",
+								"getBookingAstrologerByAuth"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "limit",
+									"value": "10"
+								},
+								{
+									"key": "search",
+									"value": ""
+								},
+								{
+									"key": "status",
+									"value": "true"
+								},
+								{
+									"key": "CallStatus",
+									"value": "Approve"
+								},
+								{
+									"key": "BooingStatus",
+									"value": "Pending"
+								},
+								{
+									"key": "sortBy",
+									"value": "created_at"
+								},
+								{
+									"key": "sortOrder",
+									"value": "desc"
+								}
+							]
+						}
+					}
+				},
+				{
+					"name": "Update Booking Astrologer By ID",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{auth}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"id\": 1,\n  \"Astorloger_id\": 1,\n  \"user_id\": 2,\n  \"CallStatus\": \"Approve\",\n  \"BooingStatus\": \"Completed\",\n  \"status\": true\n}"
+						},
+						"url": {
+							"raw": "{{ashtro}}/api/astrologer/booking/updateBookingAstrologerById",
+							"host": [
+								"{{ashtro}}"
+							],
+							"path": [
+								"api",
+								"astrologer",
+								"booking",
+								"updateBookingAstrologerById"
+							]
+						}
+					}
+				},
+				{
+					"name": "Delete Booking Astrologer By ID",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{auth}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{ashtro}}/api/astrologer/booking/deleteBookingAstrologerById/1",
+							"host": [
+								"{{ashtro}}"
+							],
+							"path": [
+								"api",
+								"astrologer",
+								"booking",
+								"deleteBookingAstrologerById",
+								"1"
+							]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "Class Join User APIs",
+			"item": [
+				{
+					"name": "Create Class Join User",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{auth}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"class_id\": 1,\n  \"status\": true\n}"
+						},
+						"url": {
+							"raw": "{{ashtro}}/api/master/class-join-user/create",
+							"host": [
+								"{{ashtro}}"
+							],
+							"path": [
+								"api",
+								"master",
+								"class-join-user",
+								"create"
+							]
+						}
+					}
+				},
+				{
+					"name": "Get All Class Join Users",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{ashtro}}/api/master/class-join-user/getAll?page=1&limit=10&search=&status=true&class_id=1&sortBy=created_at&sortOrder=desc",
+							"host": [
+								"{{ashtro}}"
+							],
+							"path": [
+								"api",
+								"master",
+								"class-join-user",
+								"getAll"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "limit",
+									"value": "10"
+								},
+								{
+									"key": "search",
+									"value": ""
+								},
+								{
+									"key": "status",
+									"value": "true"
+								},
+								{
+									"key": "class_id",
+									"value": "1"
+								},
+								{
+									"key": "sortBy",
+									"value": "created_at"
+								},
+								{
+									"key": "sortOrder",
+									"value": "desc"
+								}
+							]
+						}
+					}
+				},
+				{
+					"name": "Get Class Join User By ID",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{auth}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{ashtro}}/api/master/class-join-user/getClassJoinUserById/1",
+							"host": [
+								"{{ashtro}}"
+							],
+							"path": [
+								"api",
+								"master",
+								"class-join-user",
+								"getClassJoinUserById",
+								"1"
+							]
+						}
+					}
+				},
+				{
+					"name": "Update Class Join User By ID",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{auth}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"id\": 1,\n  \"class_id\": 2,\n  \"status\": true\n}"
+						},
+						"url": {
+							"raw": "{{ashtro}}/api/master/class-join-user/updateClassJoinUserById",
+							"host": [
+								"{{ashtro}}"
+							],
+							"path": [
+								"api",
+								"master",
+								"class-join-user",
+								"updateClassJoinUserById"
+							]
+						}
+					}
+				},
+				{
+					"name": "Delete Class Join User By ID",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{auth}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{ashtro}}/api/master/class-join-user/deleteClassJoinUserById/1",
+							"host": [
+								"{{ashtro}}"
+							],
+							"path": [
+								"api",
+								"master",
+								"class-join-user",
+								"deleteClassJoinUserById",
+								"1"
+							]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "Class Share User APIs",
+			"item": [
+				{
+					"name": "Create Class Share User",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{auth}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"class_id\": 1,\n  \"status\": true\n}"
+						},
+						"url": {
+							"raw": "{{ashtro}}/api/master/class-share-user/create",
+							"host": [
+								"{{ashtro}}"
+							],
+							"path": [
+								"api",
+								"master",
+								"class-share-user",
+								"create"
+							]
+						}
+					}
+				},
+				{
+					"name": "Get All Class Share Users",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{ashtro}}/api/master/class-share-user/getAll?page=1&limit=10&search=&status=true&class_id=1&sortBy=created_at&sortOrder=desc",
+							"host": [
+								"{{ashtro}}"
+							],
+							"path": [
+								"api",
+								"master",
+								"class-share-user",
+								"getAll"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "limit",
+									"value": "10"
+								},
+								{
+									"key": "search",
+									"value": ""
+								},
+								{
+									"key": "status",
+									"value": "true"
+								},
+								{
+									"key": "class_id",
+									"value": "1"
+								},
+								{
+									"key": "sortBy",
+									"value": "created_at"
+								},
+								{
+									"key": "sortOrder",
+									"value": "desc"
+								}
+							]
+						}
+					}
+				},
+				{
+					"name": "Get Class Share User By ID",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{auth}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{ashtro}}/api/master/class-share-user/getClassShareUserById/1",
+							"host": [
+								"{{ashtro}}"
+							],
+							"path": [
+								"api",
+								"master",
+								"class-share-user",
+								"getClassShareUserById",
+								"1"
+							]
+						}
+					}
+				},
+				{
+					"name": "Update Class Share User By ID",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{auth}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"id\": 1,\n  \"class_id\": 2,\n  \"status\": true\n}"
+						},
+						"url": {
+							"raw": "{{ashtro}}/api/master/class-share-user/updateClassShareUserById",
+							"host": [
+								"{{ashtro}}"
+							],
+							"path": [
+								"api",
+								"master",
+								"class-share-user",
+								"updateClassShareUserById"
+							]
+						}
+					}
+				},
+				{
+					"name": "Delete Class Share User By ID",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{auth}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{ashtro}}/api/master/class-share-user/deleteClassShareUserById/1",
+							"host": [
+								"{{ashtro}}"
+							],
+							"path": [
+								"api",
+								"master",
+								"class-share-user",
+								"deleteClassShareUserById",
+								"1"
+							]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "Class View User APIs",
+			"item": [
+				{
+					"name": "Create Class View User",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{auth}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"class_id\": 1,\n  \"status\": true\n}"
+						},
+						"url": {
+							"raw": "{{ashtro}}/api/master/class-view-user/create",
+							"host": [
+								"{{ashtro}}"
+							],
+							"path": [
+								"api",
+								"master",
+								"class-view-user",
+								"create"
+							]
+						}
+					}
+				},
+				{
+					"name": "Get All Class View Users",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{ashtro}}/api/master/class-view-user/getAll?page=1&limit=10&search=&status=true&class_id=1&sortBy=created_at&sortOrder=desc",
+							"host": [
+								"{{ashtro}}"
+							],
+							"path": [
+								"api",
+								"master",
+								"class-view-user",
+								"getAll"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "limit",
+									"value": "10"
+								},
+								{
+									"key": "search",
+									"value": ""
+								},
+								{
+									"key": "status",
+									"value": "true"
+								},
+								{
+									"key": "class_id",
+									"value": "1"
+								},
+								{
+									"key": "sortBy",
+									"value": "created_at"
+								},
+								{
+									"key": "sortOrder",
+									"value": "desc"
+								}
+							]
+						}
+					}
+				},
+				{
+					"name": "Get Class View User By ID",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{auth}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{ashtro}}/api/master/class-view-user/getClassViewUserById/1",
+							"host": [
+								"{{ashtro}}"
+							],
+							"path": [
+								"api",
+								"master",
+								"class-view-user",
+								"getClassViewUserById",
+								"1"
+							]
+						}
+					}
+				},
+				{
+					"name": "Update Class View User By ID",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{auth}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"id\": 1,\n  \"class_id\": 2,\n  \"status\": true\n}"
+						},
+						"url": {
+							"raw": "{{ashtro}}/api/master/class-view-user/updateClassViewUserById",
+							"host": [
+								"{{ashtro}}"
+							],
+							"path": [
+								"api",
+								"master",
+								"class-view-user",
+								"updateClassViewUserById"
+							]
+						}
+					}
+				},
+				{
+					"name": "Delete Class View User By ID",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{auth}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{ashtro}}/api/master/class-view-user/deleteClassViewUserById/1",
+							"host": [
+								"{{ashtro}}"
+							],
+							"path": [
+								"api",
+								"master",
+								"class-view-user",
+								"deleteClassViewUserById",
+								"1"
+							]
+						}
+					}
+				}
+			]
+		}
+	]
+}

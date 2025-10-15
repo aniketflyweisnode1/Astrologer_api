@@ -10,6 +10,13 @@ const cityRoutes = require('./routes/Master/city.routes.js');
 const categoryRoutes = require('./routes/Master/category.routes.js');
 const appCategoryRoutes = require('./routes/Master/app_category.routes.js');
 const walletRoutes = require('./routes/Master/wallet.routes.js');
+const classShareUserRoutes = require('./routes/Master/class_share_user.routes.js');
+const classViewUserRoutes = require('./routes/Master/class_view_user.routes.js');
+const classJoinUserRoutes = require('./routes/Master/class_join_user.routes.js');
+
+// Import Astrologer route modules
+const bookingAstrologerRoutes = require('./routes/Astrologer/booking_astrologer.routes.js');
+const astrologerClassRoutes = require('./routes/Astrologer/astrologer_class.routes.js');
 
 // Import Admin route modules
 const otpTypeRoutes = require('./routes/Master/otp_type.routes.js');
@@ -69,5 +76,12 @@ router.use('/master/notifications', notificationRoutes);
 router.use('/master/category', categoryRoutes);
 router.use('/master/app-category', appCategoryRoutes);
 router.use('/master/wallet', walletRoutes);
+router.use('/master/class-share-user', classShareUserRoutes);
+router.use('/master/class-view-user', classViewUserRoutes);
+router.use('/master/class-join-user', classJoinUserRoutes);
+
+// Mount Astrologer route modules
+router.use('/astrologer/booking', bookingAstrologerRoutes);
+router.use('/astrologer/class', astrologerClassRoutes);
 
 module.exports = router;

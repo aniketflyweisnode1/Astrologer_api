@@ -2,27 +2,12 @@ const express = require('express');
 const router = express.Router();
 
 // Import controllers
-const { 
-  createState, 
-  getAllStates, 
-  getStateById, 
-  updateState,
-  getStatesByCountryId,
-  deleteState
-} = require('../../controllers/state.controller'); 
-
+const { createState, getAllStates, getStateById, updateState, getStatesByCountryId, deleteState } = require('../../controllers/state.controller'); 
 // Import middleware
 const { auth } = require('../../../middleware/auth');
-const { validateBody, validateQuery, validateParams } = require('../../../middleware/validation');
-
+const { validateBody, validateParams } = require('../../../middleware/validation');
 // Import validators
-const { 
-  createStateSchema, 
-  updateStateSchema, 
-  getStateByIdSchema, 
-  getAllStatesSchema,
-  getStatesByCountryIdSchema
-} = require('../../../validators/state.validator');
+const { createStateSchema, updateStateSchema, getStateByIdSchema, getAllStatesSchema, getStatesByCountryIdSchema } = require('../../../validators/state.validator');
 
 // Create state with auth
 router.post('/create', validateBody(createStateSchema), createState);
