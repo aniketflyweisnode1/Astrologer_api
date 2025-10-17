@@ -25,6 +25,14 @@ const statusRoutes = require('./routes/Master/status.routes.js');
 const notificationTypeRoutes = require('./routes/Master/notification_type.routes.js');
 const notificationRoutes = require('./routes/Master/notification.routes.js');
 
+// Import new route modules
+const horoscopeQuizRoutes = require('./routes/Master/horoscope_quiz.routes.js');
+const horoscopeQuizMapUserRoutes = require('./routes/User/horoscope_quiz_map_user.routes.js');
+const giftRoutes = require('./routes/Master/gift.routes.js');
+const horoscopeQuizClaimGiftRoutes = require('./routes/Master/horoscope_quiz_claim_gift.routes.js');
+const planRoutes = require('./routes/Master/plan.routes.js');
+const planSubscriptionByUserRoutes = require('./routes/Master/plan_subscription_by_user.routes.js');
+
 // Import Master route modules
 
 // Import middleware
@@ -79,6 +87,16 @@ router.use('/master/wallet', walletRoutes);
 router.use('/master/class-share-user', classShareUserRoutes);
 router.use('/master/class-view-user', classViewUserRoutes);
 router.use('/master/class-join-user', classJoinUserRoutes);
+
+// Mount new Master route modules
+router.use('/master/horoscope-quiz', horoscopeQuizRoutes);
+router.use('/master/gift', giftRoutes);
+router.use('/master/horoscope-quiz-claim-gift', horoscopeQuizClaimGiftRoutes);
+router.use('/master/plan', planRoutes);
+router.use('/master/plan-subscription-by-user', planSubscriptionByUserRoutes);
+
+// Mount new User route modules
+router.use('/users/horoscope-quiz-map-user', horoscopeQuizMapUserRoutes);
 
 // Mount Astrologer route modules
 router.use('/astrologer/booking', bookingAstrologerRoutes);
