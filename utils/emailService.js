@@ -212,6 +212,153 @@ class EmailService {
   }
 
   /**
+   * Send password reset OTP email
+   * @param {string} to - Recipient email address
+   * @param {string} otp - OTP code
+   * @param {string} userName - User's name (optional)
+   * @returns {Promise<boolean>} Success status
+   */
+  async sendPasswordResetOTPEmail(to, otp, userName = 'User') {
+    try {
+      // Create transporter if it doesn't exist
+      if (!this.transporter) {
+        logger.info('Creating new transporter...');
+        this.transporter = nodemailer.createTransporter({
+          service: 'gmail',
+          auth: {
+            user: "movpankaj3@gmail.com",
+            pass: "shjopoqudhknisxh"
+          }
+        });
+      }
+
+      const mailOptions = {
+        from: "movpankaj3@gmail.com",
+        to: to,
+        subject: 'Password Reset OTP - Mr. Vibes',
+        html: this.generatePasswordResetOTPEmailTemplate(otp, userName),
+        text: `Your password reset OTP is: ${otp}. This OTP is valid for 10 minutes.`
+      };
+
+      logger.info('Attempting to send password reset email...', { to, from: mailOptions.from });
+      const result = await this.transporter.sendMail(mailOptions);
+      logger.info('Password reset OTP email sent successfully', {
+        to,
+        messageId: result.messageId
+      });
+
+      return true;
+    } catch (error) {
+      logger.error('Failed to send password reset OTP email', {
+        to,
+        error: error.message,
+        stack: error.stack
+      });
+      return false;
+    }
+  }
+
+  /**
+   * Generate HTML email template for password reset OTP
+   * @param {string} otp - OTP code
+   * @param {string} userName - User's name
+   * @returns {string} HTML email template
+   */
+  generatePasswordResetOTPEmailTemplate(otp, userName) {
+    return `
+      <!DOCTYPE html>
+      <html>
+      <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Password Reset OTP - Mr. Vibes</title>
+        <style>
+          body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+          }
+          .header {
+            background-color: #e74c3c;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            border-radius: 8px 8px 0 0;
+          }
+          .content {
+            background-color: #f9f9f9;
+            padding: 30px;
+            border-radius: 0 0 8px 8px;
+          }
+          .otp-code {
+            background-color: #fff;
+            border: 2px dashed #e74c3c;
+            padding: 20px;
+            text-align: center;
+            font-size: 32px;
+            font-weight: bold;
+            color: #e74c3c;
+            margin: 20px 0;
+            border-radius: 8px;
+            letter-spacing: 5px;
+          }
+          .warning {
+            background-color: #fff3cd;
+            border: 1px solid #ffeaa7;
+            color: #856404;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 20px 0;
+          }
+          .footer {
+            text-align: center;
+            margin-top: 30px;
+            color: #666;
+            font-size: 14px;
+          }
+        </style>
+      </head>
+      <body>
+        <div class="header">
+          <h1>Mr. Vibes</h1>
+          <p>Password Reset Verification Code</p>
+        </div>
+        
+        <div class="content">
+          <h2>Hello ${userName}!</h2>
+          
+          <p>You requested a password reset. Use the following OTP to reset your password:</p>
+          
+          <div class="otp-code">${otp}</div>
+          
+          <div class="warning">
+            <strong>Important:</strong>
+            <ul>
+              <li>This OTP is valid for 10 minutes only</li>
+              <li>Do not share this code with anyone</li>
+              <li>If you didn't request this password reset, please ignore this email</li>
+              <li>For security reasons, this OTP can only be used once</li>
+            </ul>
+          </div>
+          
+          <p>If you have any questions or concerns, please contact our support team.</p>
+          
+          <p>Best regards,<br>The Mr. Vibes Team</p>
+        </div>
+        
+        <div class="footer">
+          <p>This is an automated message. Please do not reply to this email.</p>
+          <p>&copy; 2024 Mr. Vibes. All rights reserved.</p>
+        </div>
+      </body>
+      </html>
+    `;
+  }
+
+  /**
    * Send welcome email
    * @param {string} to - Recipient email address
    * @param {string} userName - User's name

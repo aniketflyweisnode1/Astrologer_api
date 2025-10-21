@@ -17,6 +17,12 @@ const classJoinUserRoutes = require('./routes/Master/class_join_user.routes.js')
 // Import Astrologer route modules
 const bookingAstrologerRoutes = require('./routes/Astrologer/booking_astrologer.routes.js');
 const astrologerClassRoutes = require('./routes/Astrologer/astrologer_class.routes.js');
+const streamRoutes = require('./routes/Astrologer/stream.routes.js');
+const myShortsRoutes = require('./routes/Astrologer/my_shorts.routes.js');
+const likeShortsRoutes = require('./routes/Astrologer/like_shorts.routes.js');
+const commentShortsRoutes = require('./routes/Astrologer/comment_shorts.routes.js');
+const shareShortsRoutes = require('./routes/Astrologer/share_shorts.routes.js');
+const tagShortsRoutes = require('./routes/Astrologer/tag_shorts.routes.js');
 
 // Import Admin route modules
 const otpTypeRoutes = require('./routes/Master/otp_type.routes.js');
@@ -101,5 +107,11 @@ router.use('/users/horoscope-quiz-map-user', horoscopeQuizMapUserRoutes);
 // Mount Astrologer route modules
 router.use('/astrologer/booking', bookingAstrologerRoutes);
 router.use('/astrologer/class', astrologerClassRoutes);
+router.use('/astrologer/stream', streamRoutes);
+router.use('/astrologer/my-shorts', myShortsRoutes);
+router.use('/astrologer/like-shorts', likeShortsRoutes);
+router.use('/astrologer/comment-shorts', commentShortsRoutes);
+router.use('/astrologer/share-shorts', shareShortsRoutes);
+router.use('/astrologer/tag-shorts', tagShortsRoutes);
 
 module.exports = router;

@@ -624,6 +624,62 @@ const updatePrivacySettingsSchema = Joi.object({
     })
 });
 
+// Forget password validation schema
+const forgetPasswordSchema = Joi.object({
+  email: Joi.string()
+    .email()
+    .lowercase()
+    .trim()
+    .required()
+    .messages({
+      'string.empty': 'Email is required',
+      'string.email': 'Please enter a valid email address',
+      'any.required': 'Email is required'
+    })
+});
+
+// Reset password validation schema
+const resetPasswordSchema = Joi.object({
+  email: Joi.string()
+    .email()
+    .lowercase()
+    .trim()
+    .required()
+    .messages({
+      'string.empty': 'Email is required',
+      'string.email': 'Please enter a valid email address',
+      'any.required': 'Email is required'
+    }),
+  otp: Joi.string()
+    .length(6)
+    .pattern(/^[0-9]+$/)
+    .required()
+    .messages({
+      'string.empty': 'OTP is required',
+      'string.length': 'OTP must be exactly 6 digits',
+      'string.pattern.base': 'OTP must contain only numbers',
+      'any.required': 'OTP is required'
+    }),
+  newPassword: Joi.string()
+    .min(6)
+    .max(128)
+    .required()
+    .messages({
+      'string.empty': 'New password is required',
+      'string.min': 'New password must be at least 6 characters long',
+      'string.max': 'New password cannot exceed 128 characters',
+      'any.required': 'New password is required'
+    }),
+  confirmPassword: Joi.string()
+    .valid(Joi.ref('newPassword'))
+    .required()
+    .messages({
+      'string.empty': 'Confirm password is required',
+      'any.only': 'Confirm password must match new password',
+      'any.required': 'Confirm password is required'
+    })
+});
+
 module.exports = {
   createUserSchema,
   updateUserSchema,
@@ -635,5 +691,7 @@ module.exports = {
   sendOTPSchema,
   verifyOTPSchema,
   updateNotificationSettingsSchema,
-  updatePrivacySettingsSchema
+  updatePrivacySettingsSchema,
+  forgetPasswordSchema,
+  resetPasswordSchema
 };

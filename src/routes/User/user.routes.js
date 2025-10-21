@@ -1,12 +1,12 @@
 const express = require('express');
 const router = express.Router();
 // Import controllers
-const { createUser, getAllUsers, getUserById, updateUser, updateUserByIdBody, deleteUser, login, logout, getProfile, updateProfile, changePassword, sendOTP, verifyOTP, updateNotificationSettings, updatePrivacySettings } = require('../../controllers/user.controller'); 
+const { createUser, getAllUsers, getUserById, updateUser, updateUserByIdBody, deleteUser, login, logout, getProfile, updateProfile, changePassword, sendOTP, verifyOTP, updateNotificationSettings, updatePrivacySettings, forgetPassword, resetPassword } = require('../../controllers/user.controller'); 
   // Import middleware
 const { auth, authRateLimit } = require('../../../middleware/auth');
 const { validateBody, validateQuery, validateParams } = require('../../../middleware/validation');
 // Import validators
-const { createUserSchema, updateUserSchema, updateUserByIdBodySchema, loginSchema, getUserByIdSchema, getAllUsersSchema, changePasswordSchema, sendOTPSchema, verifyOTPSchema, updateNotificationSettingsSchema, updatePrivacySettingsSchema } = require('../../../validators/user.validator');
+const { createUserSchema, updateUserSchema, updateUserByIdBodySchema, loginSchema, getUserByIdSchema, getAllUsersSchema, changePasswordSchema, sendOTPSchema, verifyOTPSchema, updateNotificationSettingsSchema, updatePrivacySettingsSchema, forgetPasswordSchema, resetPasswordSchema } = require('../../../validators/user.validator');
 
 
 
@@ -26,5 +26,9 @@ router.put('/updateUserById', auth, validateBody(updateUserByIdBodySchema), upda
 router.delete('/deleteUserById/:id',  auth, validateParams(getUserByIdSchema), deleteUser);
 router.put('/updateNotificationSettings', auth, validateBody(updateNotificationSettingsSchema), updateNotificationSettings);
 router.put('/updatePrivacySettings', auth, validateBody(updatePrivacySettingsSchema), updatePrivacySettings);
+
+// Password reset routes
+router.post('/forget-password', authRateLimit, validateBody(forgetPasswordSchema), forgetPassword);
+router.post('/reset-password', authRateLimit, validateBody(resetPasswordSchema), resetPassword);
 
 module.exports = router;
